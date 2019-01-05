@@ -9,7 +9,7 @@ subtitle: "技术人生"
 description: "Runnning 的个人博客"
 keywords: 遗忘的角落, runningwater
 timezone: Asia/Shanghai
-encoding: "utf-8"
+encoding: utf-8
 side_bar_repo_limit: 5
 
 # ---------------- #
@@ -34,9 +34,9 @@ navs:
     href: /categories/
     label: 分类
 
-  -
-    href: /archives/
-    label: 归档
+   -
+     href: /archives/
+     label: 归档
 
   -
     href: /wiki/
