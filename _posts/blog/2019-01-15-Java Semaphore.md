@@ -5,12 +5,15 @@ categories: blog
 description: Java 集合类
 keywords: Semaphore,Java,Currency,信号量
 ---
+
+在多线程程序设计中有三个同步工具需要我们掌握，分别是`Semaphore(信号量)`，`countDownLatch（倒计数门闸锁）`，`CyclicBarrier(可重用栅栏)`
+
 **目录**
 
 * TOC
 {:toc}
 
-在多线程程序设计中有三个同步工具需要我们掌握，分别是`Semaphore(信号量)`，`countDownLatch（倒计数门闸锁）`，`CyclicBarrier(可重用栅栏)`
+
 
 
 ## 信号量Semaphore的介绍
