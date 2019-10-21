@@ -22,7 +22,9 @@ keywords: Linux, swap， 交换分区
 
 ## SWAP配置介绍
 1. 通过远程连接，执行如下命令，创建用于交换分区的文件。
+
    	dd if=/dev/zero of=/mnt/swap bs=block_size count=number_of_block
+
  >> 注：block_size、number_of_block大小可以自定义，比如bs=1M count=1024代表设置1G大小SWAP分区。
 
 2. 执行如下命令，设置交换分区文件。
@@ -47,11 +49,12 @@ keywords: Linux, swap， 交换分区
 	![fstab](/images/posts/fstab.png)
 
 5. 执行如下命令，临时修改swappiness参数值，此处以空闲内存少于10%时才使用SWAP分区为例。
-  >> 提示：在Linux系统中，可以通过查看/proc/sys/vm/swappiness内容的值来确定系统对SWAP分区的使用原则。当 swappiness内容的值为0时，表示最大限度地使用物理内存，物理内存使用完毕后，才会使用SWAP分区。当swappiness内容的值为100时，表示积极地使用SWAP分区，并且把内存中的数据及时地置换到SWAP分区。查看修改前为0，需要在物理内存使用完毕后才会使用SWAP分区。
+   
+   >> 提示：在Linux系统中，可以通过查看/proc/sys/vm/swappiness内容的值来确定系统对SWAP分区的使用原则。当 swappiness内容的值为0时，表示最大限度地使用物理内存，物理内存使用完毕后，才会使用SWAP分区。当swappiness内容的值为100时，表示积极地使用SWAP分区，并且把内存中的数据及时地置换到SWAP分区。查看修改前为0，需要在物理内存使用完毕后才会使用SWAP分区。
 
-  	echo 10 >/proc/sys/vm/swappiness
+   ```echo 10 >/proc/sys/vm/swappiness```
 
-	![echo_10](/images/posts/echo_10.png)  
+   ![echo_10](/images/posts/echo_10.png)  
 
 6. 若需要永久修改此配置，在系统重启之后也生效的话，通过vim命令编辑/etc/sysctl.conf文件，并增加如下内容
 
@@ -69,17 +72,21 @@ keywords: Linux, swap， 交换分区
    	free -m
 
    系统显示类似如下
+
    ![free_m_1](/images/posts/free_m.png)	   
 
 2. 执行如下命令，关闭SWAP分区。
+
    	swapoff [$SWAP_File]
 
    >> 注：[$SWAP_File]SWAP分区标识。
 
    系统显示类似如下。
+
    ![](/images/posts/swapoff.png)
 
 3. 通过vim命令，修改/etc/fstab文件，删除或注释相关配置，取消SWAP的自动挂载，系统显示类似如下。
+   
    ![](/images/posts/swapoff_1.png)
 
 4. 执行如下命令，确认SWAP分区已经关闭。
@@ -87,6 +94,7 @@ keywords: Linux, swap， 交换分区
    	free -m
 
    系统显示类似如下
+   
    ![](/images/posts/free_m_1.png)	 
 
 5. 执行如下命令，临时修改`swappiness`参数值。此处以空闲内存为**0%**为例。
